@@ -1,5 +1,7 @@
 # My Calculator
 
+Responsive calculator in vintage style.
+
 FreeCodeCamp project. The task is:
  - Fulfill the user stories. Use whichever libraries or APIs you need. Give it your own personal style.
  - User Story: I can add, subtract, multiply and divide two numbers.
@@ -8,11 +10,11 @@ FreeCodeCamp project. The task is:
 
 ## Built With
 
-Google Fonts - High-quality fonts to use on your web site
-HTML
-CSS
-JavaScript
-JQuery
+ - Google Fonts - High-quality fonts to use on your web site
+ - HTML
+ - CSS
+ - JavaScript
+ - JQuery
 
 ## The Site URL
 
