@@ -1,0 +1,292 @@
+/*\\\\\\\ A SIMPLE CSS RESET FROM ERIC MEYER ///////*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+/*\\\\\\\ SCSS variables ///////*/
+
+$my-red: hsl(356, 87%, 30%);
+$my-white: hsla(49, 43%, 77%, 1);
+$my-display-color: hsl(175, 43%, 5%);
+$my-delete-color: hsl(357, 43%, 77%);
+$my-operator-color: hsl(150, 43%, 77%);
+$my-amount-hover: 17;
+$my-amount-active: 47;
+
+$my-border-shadow: -1px 0 1px white, 0 2px 3px black, 2px 0 6px black, 0 -1px 1px white, 2px 0 4px black inset, -1px 0 1px white inset, -2px 0 1px black inset;
+$my-title-shadow: -1px 0 1px white, 0 1px 1px black, 2px 0 1px black, 0 -1px 1px white;
+$my-display-shadow: -1px -1px 1px transparentize($my-white, 0.5) inset, 0 0 1px black inset;
+$my-button-text-shadow: 0 0 1px black;
+
+$my-title-font: 'Pacifico', cursive;
+$my-display-font: 'Cabin', sans-serif;
+$my-button-font: 'Cabin', sans-serif;
+
+$my-mobile-button-whr: calc((100vw - 23.12vh) / 4);
+  /***
+  width = height = radius = ((.buttons width - 4 * grid-gap) / 4);
+  .buttons width = the viewport width - 2 * (body padding + calculator padding + border + border padding) = 100vw - 2 * (1.8vh + 1.8vh + 0.36vh + 3.6vh) = 100vw - 15.12vh;
+  grid-gap = 2vh;
+  ***/
+
+
+/*\\\\\\\ BASE STYLES ///////*/
+
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  /***
+  The max-width of calculator is 60vh. If the width of the viewport is bigger than calculator's max-width, the reference font-size is the viewport heigth, otherwise the reference font-size is the viewport width.
+  ***/
+  font-size: 4.8vw;
+  @media (min-width: 63.6vh) {
+    font-size: 3vh;
+  }
+  @media (orientation: portrait) and (min-height: 193.6vw) {
+    /* If the viewport is extrem narrow.*/
+    font-size: 4vw;
+  }
+}
+
+body {
+  background-color: black;
+}
+
+.calculator {
+  background-color: $my-red;
+}
+
+.border {
+  box-shadow: $my-border-shadow;
+}
+
+h1 {
+  font-family: $my-title-font;
+  font-weight: 400;
+  color: $my-white;
+  text-align: center;
+  font-size: 1.8rem;
+  span {
+  background-color: $my-red;
+  text-shadow: $my-title-shadow;
+  }
+}
+
+
+/*\\\\\\\ LAYOUT STYLES ///////*/
+
+h1, .display {
+  margin-bottom: 6.3vh;
+  @media (orientation: portrait) and (min-height: 193.6vw) {
+    /* If the viewport is extrem narrow the reference is the viewport width*/
+    margin-bottom: 15vw;
+  }
+}
+
+body {
+  padding: 1.8vh;
+}
+
+.calculator {
+  margin: 0 auto;
+  height: 96.4vh;
+  max-height: 190vw;
+  max-width: 60vh;
+  border-radius: 36vh/5.4vh;
+  padding: 5.4vh 1.8vh 1.8vh;
+}
+
+.border {
+  height: 100%;
+  border: 0.36vh solid $my-white;
+  border-radius: 36vh/5.4vh;
+  padding: 3.6vh;
+}
+
+h1 {
+  margin-top: -5.4vh;
+  line-height: 1;
+  span {
+  padding: 0 3.6vh;
+  }
+}
+
+
+/*\\\\\\\ COMPONENT STYLES ///////*/
+
+.display {
+  font-family: $my-display-font;
+  font-weight: 400;
+  background-color: $my-display-color;
+  padding: 1.8vh;
+  border-radius: 1.8vh/0.72vh;
+  box-shadow: $my-display-shadow;
+  max-height: 18%;
+  overflow: hidden;
+}
+
+.display div {
+  color: $my-white;
+  text-align: right;
+}
+
+#entry {
+  font-size: 1.6rem;
+  line-height: 1.6;
+}
+
+.buttons {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(5, 1fr);
+  justify-content: end;
+  align-content: stretch;
+  width: 100%;
+  height: 54vh;
+  @media (orientation: portrait) and (min-height: 193.6vw) {
+    /* If the viewport is extrem narrow. */
+    height: 100vw;
+  }
+}
+
+button {
+  justify-self: center;
+  align-self: center;
+  font-family: $my-button-font;
+  font-weight: 400;
+  font-size: 1.4rem;
+  text-shadow: $my-button-text-shadow;
+  background-color: $my-white;
+  width: $my-mobile-button-whr;
+  height: $my-mobile-button-whr;
+  @media (min-width: 63.6vh) {
+    width: 9.2vh;
+    height: 9.2vh;
+  }
+  border-radius: 50%;
+  border: 0.09vh solid $my-white;
+  box-shadow: $my-border-shadow;
+  margin: 0;
+  cursor: pointer;
+  padding: 0;
+  -webkit-transition-duration: 0.4s; /* Safari */
+  transition-duration: 0.4s;
+  &:hover {
+    background-color: darken($my-white, $my-amount-hover);
+    border-color: darken($my-white, $my-amount-hover);
+    outline: none;
+  }
+  &:focus {
+    outline: none;
+  }
+  &:active {
+    transform: scale(0.9, 0.9);
+    background-color: darken($my-white, $my-amount-active);
+    border-color: darken($my-white, $my-amount-active);
+  }
+}
+
+.delete {
+  background-color: $my-delete-color;
+  border-color: $my-delete-color;
+  &:hover {
+    background-color: darken($my-delete-color, $my-amount-hover);
+    border-color: darken($my-delete-color, $my-amount-hover);
+  }
+  &:active {
+    background-color: darken($my-delete-color, $my-amount-active);
+    border-color: darken($my-delete-color, $my-amount-active);
+  }
+}
+
+.operator {
+  background-color: $my-operator-color;
+  border-color: $my-operator-color;
+  &:hover {
+    background-color: darken($my-operator-color, $my-amount-hover);
+    border-color: darken($my-operator-color, $my-amount-hover);
+  }
+  &:active {
+    background-color: darken($my-operator-color, $my-amount-active);
+    border-color: darken($my-operator-color, $my-amount-active);
+  }
+}
+
+.plus {
+  grid-column: 4 / 5;
+  grid-row: 3 / span 2;
+  height: calc((54vh - 5 * #{$my-mobile-button-whr}) / 5 + 2 * #{$my-mobile-button-whr});
+  /* the .buttons height is 54vh*/
+  border-radius: $my-mobile-button-whr;
+  @media (min-width: 63.6vh) {
+    width: 9.2vh;
+    height: calc((54vh - 5 * 9.2vh) / 5 + 2 * 9.2vh);
+    border-radius: 9.2vh;
+  }
+  @media (orientation: portrait) and (min-height: 193.6vw) {
+    height: calc((100vw - 5 * #{$my-mobile-button-whr}) / 5 + 2 * #{$my-mobile-button-whr});
+    /* If the viewport is extrem narrow the .buttons height is 100vw */
+  }
+}
+
+.null {
+  grid-column: 1 / span 2;
+  grid-row: 5 / 6;
+  width: calc(((100vw - 15.12vh) - 4 * #{$my-mobile-button-whr}) / 4 + 2 * #{$my-mobile-button-whr});
+    /***
+    width: ((the .buttons width - 4 * button width) / 4 + 2 * button width);
+    the .buttons width = 100vw - 15.12vh;
+    ***/
+  border-radius: $my-mobile-button-whr;
+  @media (min-width: 63.6vh) {
+    width: calc(((60vh - 11.52vh) - 4 * 9.2vh) / 4 + 2 * 9.2vh);
+      /***
+      width: ((the .buttons width - 4 * button width) / 3 + 2 * button width);
+      the .buttons width = 60vh - 11.52vh;
+      button width = 9.2vh;
+      ***/
+  }
+}
