@@ -9,8 +9,7 @@
 <script src="https://code.jquery.com/jquery.min.js"></script>
 <link href="https://fonts.googleapis.com/css?family=Pacifico" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Cabin" rel="stylesheet">
-
-
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.css" />
   
   
       <link rel="stylesheet" href="css/style.css">
@@ -24,7 +23,9 @@
       <h1><span>My Calculator</span></h1>
       <div class="display">
         <div id="entry">0</div>
-        <div id="entry-history"> ÷></div>
+        <div class="wrapper-entry-history">
+          <div id="entry-history"> l°°b</div>
+        </div>
       </div>
       <div class="buttons">
         <button class="delete" value="c">C</button>
@@ -48,7 +49,49 @@
       </div>
     </div>
   </div>
-  
+
+<!--Malihu custom scrollbar plugin-->
+<script src="https://code.jquery.com/jquery-2.1.0.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js"></script>
+<script>
+    (function($){
+    $(window).on("load",function(){
+      $(".wrapper-entry-history")
+        .mCustomScrollbar('scrollTo','right',{scrollInertia:0})
+        .mCustomScrollbar({
+          axis: "x",
+          scrollButtons:{enable:true},
+          //alwaysShowScrollbar: 2,
+          theme: "rounded",
+          scrollInertia: 0,
+          //autoHideScrollbar: true,
+          advanced: {
+            autoExpandHorizontalScroll: true,
+            updateOnSelectorChange: true
+          },
+          callbacks:{
+            onBeforeUpdate:function(){
+              var eh = $("#entry-history");
+              var int = eh.width();
+              if(int > 500) {
+                $("#entry").html(":(");
+                $("#entry-history").html("I'm sorry, my display is overflow!");
+              }
+            },
+            onUpdate:function(){
+              $(".wrapper-entry-history").mCustomScrollbar('scrollTo','right',{scrollInertia:0});
+            }
+          }
+        })
+      .mCustomScrollbar('scrollTo','right',{scrollInertia:0});
+      
+    });
+
+  })(jQuery);
+    
+  </script>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
+
     <script src="js/index.js"></script>
 
 </body>
