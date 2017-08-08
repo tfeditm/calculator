@@ -10,8 +10,8 @@ FreeCodeCamp project. The task is:
 
 ## Built With
 
- - [Malihu Custom Scrollbar Plugin](https://github.com/malihu/malihu-custom-scrollbar-plugin) for Entry History
- - CSS Grid Layaut for the Buttons (only works well on Chrome and Firefox)
+ - [Malihu Custom Scrollbar Plugin](https://github.com/malihu/malihu-custom-scrollbar-plugin) for the Entry History
+ - CSS Grid Layaut for the Buttons (works well on Chrome and Firefox)
  - HTML
  - SCSS
  - JavaScript
